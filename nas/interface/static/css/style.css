@@ -1,0 +1,300 @@
+/* 
+ * style.css - Feuille de style pour l'interface du Robot Mignon
+ */
+
+:root {
+    --primary-color: #6d28d9;
+    --secondary-color: #8b5cf6;
+    --accent-color: #4f46e5;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+    --light-color: #f9fafb;
+    --dark-color: #1f2937;
+    --gray-color: #9ca3af;
+    
+    /* Couleurs des émotions */
+    --emotion-joie: #fbbf24;
+    --emotion-curiosite: #10b981;
+    --emotion-peur: #93c5fd;
+    --emotion-tristesse: #1e40af;
+    --emotion-colere: #dc2626;
+    --emotion-fatigue: #7c3aed;
+    --emotion-surprise: #f472b6;
+    --emotion-neutre: #9ca3af;
+}
+
+body {
+    background-color: #f3f4f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-brand i {
+    color: #fbbf24;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+/* Indicateur de connexion */
+.connection-status {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-indicator.connected {
+    background-color: var(--success-color);
+    box-shadow: 0 0 5px var(--success-color);
+}
+
+.status-indicator.disconnected {
+    background-color: var(--danger-color);
+    box-shadow: 0 0 5px var(--danger-color);
+}
+
+.status-indicator.connecting {
+    background-color: var(--warning-color);
+    box-shadow: 0 0 5px var(--warning-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Indicateur d'émotion */
+.emotion-indicator {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--light-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emotion-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.emotion-text {
+    font-weight: 500;
+}
+
+/* Boutons d'émotion */
+.emotion-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.btn-emotion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--light-color);
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-emotion i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.btn-emotion span {
+    font-size: 0.8rem;
+}
+
+.btn-emotion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles spécifiques par émotion */
+.btn-emotion[data-emotion="joie"] i { color: var(--emotion-joie); }
+.btn-emotion[data-emotion="curiosite"] i { color: var(--emotion-curiosite); }
+.btn-emotion[data-emotion="peur"] i { color: var(--emotion-peur); }
+.btn-emotion[data-emotion="tristesse"] i { color: var(--emotion-tristesse); }
+.btn-emotion[data-emotion="colere"] i { color: var(--emotion-colere); }
+.btn-emotion[data-emotion="fatigue"] i { color: var(--emotion-fatigue); }
+.btn-emotion[data-emotion="surprise"] i { color: var(--emotion-surprise); }
+.btn-emotion[data-emotion="neutre"] i { color: var(--emotion-neutre); }
+
+.btn-emotion.active {
+    background-color: #e2e8f0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
+/* Contrôles de mouvement */
+.movement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.btn-movement {
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-movement:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-movement:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contrôles de vision */
+.captured-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f1f5f9;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+}
+
+.captured-image img {
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Animation de chargement */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+}
+
+.loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    z-index: 1;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .emotion-buttons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .emotion-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .movement-grid {
+        max-width: 240px;
+    }
+    
+    .btn-movement {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Animations pour les événements */
+@keyframes newItem {
+    from {
+        background-color: rgba(107, 114, 128, 0.1);
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+.new-item {
+    animation: newItem 2s ease-out;
+}
+
+/* Styles des alertes et messages */
+#speech-result {
+    min-height: 50px;
+    font-size: 0.9rem;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.dropdown-menu {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+} 

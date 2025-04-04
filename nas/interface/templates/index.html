@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Mignon - Interface de Contrôle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <!-- Barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <i class="fas fa-robot me-2"></i>Robot Mignon
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/monitor">Surveillance</a>
+                        </li>
+                    </ul>
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="connection-status">
+                            <span class="status-indicator disconnected" id="status-indicator"></span>
+                            <span id="connection-text">Déconnecté</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- En-tête -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1 class="h3 mb-0">Interface de Contrôle</h1>
+                                <p class="text-muted">Contrôlez et surveillez votre Robot Mignon</p>
+                            </div>
+                            <div class="emotion-indicator" id="current-emotion">
+                                <div class="emotion-icon">
+                                    <i class="fas fa-smile"></i>
+                                </div>
+                                <div class="emotion-text">Neutre</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="row">
+                <!-- Panneau de contrôle -->
+                <div class="col-lg-8">
+                    <div class="row">
+                        <!-- Contrôle des mouvements -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-arrows-alt me-2"></i>Mouvements
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="movement-controls">
+                                        <div class="movement-grid">
+                                            <button class="btn btn-light btn-movement" data-direction="forward">
+                                                <i class="fas fa-arrow-up"></i>
+                                            </button>
+                                            <div></div>
+                                            <button class="btn btn-light btn-movement" data-direction="left">
+                                                <i class="fas fa-arrow-left"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-movement" data-direction="stop">
+                                                <i class="fas fa-stop"></i>
+                                            </button>
+                                            <button class="btn btn-light btn-movement" data-direction="right">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </button>
+                                            <div></div>
+                                            <button class="btn btn-light btn-movement" data-direction="backward">
+                                                <i class="fas fa-arrow-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label for="speed-range" class="form-label">Vitesse: <span id="speed-value">50</span>%</label>
+                                            <input type="range" class="form-range" id="speed-range" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contrôle des émotions -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-heart me-2"></i>Émotions
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="emotion-controls">
+                                        <div class="emotion-buttons">
+                                            <button class="btn btn-emotion" data-emotion="joie">
+                                                <i class="fas fa-smile"></i>
+                                                <span>Joie</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="curiosite">
+                                                <i class="fas fa-search"></i>
+                                                <span>Curiosité</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="peur">
+                                                <i class="fas fa-flushed"></i>
+                                                <span>Peur</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="tristesse">
+                                                <i class="fas fa-sad-tear"></i>
+                                                <span>Tristesse</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="colere">
+                                                <i class="fas fa-angry"></i>
+                                                <span>Colère</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="fatigue">
+                                                <i class="fas fa-tired"></i>
+                                                <span>Fatigue</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="surprise">
+                                                <i class="fas fa-surprise"></i>
+                                                <span>Surprise</span>
+                                            </button>
+                                            <button class="btn btn-emotion" data-emotion="neutre">
+                                                <i class="fas fa-meh"></i>
+                                                <span>Neutre</span>
+                                            </button>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label for="intensity-range" class="form-label">Intensité: <span id="intensity-value">50</span>%</label>
+                                            <input type="range" class="form-range" id="intensity-range" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vision -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-camera me-2"></i>Vision
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="vision-controls">
+                                        <div class="captured-image">
+                                            <img id="latest-image" src="/static/img/placeholder.jpg" alt="Aucune image" class="img-fluid mb-3">
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button id="capture-btn" class="btn btn-primary">
+                                                <i class="fas fa-camera me-2"></i>Capturer
+                                            </button>
+                                            <button id="detect-objects-btn" class="btn btn-success">
+                                                <i class="fas fa-search me-2"></i>Détecter
+                                            </button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="detection-dropdown" data-bs-toggle="dropdown">
+                                                    Options
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><button class="dropdown-item detection-option" data-type="faces">Visages</button></li>
+                                                    <li><button class="dropdown-item detection-option" data-type="objects">Objets</button></li>
+                                                    <li><button class="dropdown-item detection-option" data-type="emotions">Émotions</button></li>
+                                                    <li><button class="dropdown-item detection-option" data-type="colors">Couleurs</button></li>
+                                                    <li><button class="dropdown-item detection-option" data-type="qrcode">QR Code</button></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parole -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-comment-alt me-2"></i>Parole
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="speech-controls">
+                                        <div class="mb-3">
+                                            <label for="speech-text" class="form-label">Texte à synthétiser</label>
+                                            <textarea id="speech-text" class="form-control mb-2" rows="2" placeholder="Entrez le texte à prononcer..."></textarea>
+                                            <button id="speak-btn" class="btn btn-primary">
+                                                <i class="fas fa-volume-up me-2"></i>Parler
+                                            </button>
+                                        </div>
+                                        <div class="microphone-controls">
+                                            <label class="form-label">Reconnaissance vocale</label>
+                                            <div class="d-flex gap-2">
+                                                <button id="listen-start-btn" class="btn btn-success">
+                                                    <i class="fas fa-microphone me-2"></i>Écouter
+                                                </button>
+                                                <button id="listen-stop-btn" class="btn btn-danger" disabled>
+                                                    <i class="fas fa-microphone-slash me-2"></i>Arrêter
+                                                </button>
+                                            </div>
+                                            <div id="speech-result" class="alert alert-light mt-2 p-2" role="alert">
+                                                <small>Aucune parole détectée</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panneau d'état -->
+                <div class="col-lg-4">
+                    <!-- Données des capteurs -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">
+                                <i class="fas fa-thermometer-half me-2"></i>Capteurs
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush" id="sensors-list">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-thermometer-half me-2"></i>Température</span>
+                                    <span id="sensor-temperature">--°C</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-tint me-2"></i>Humidité</span>
+                                    <span id="sensor-humidity">--%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-lightbulb me-2"></i>Luminosité</span>
+                                    <span id="sensor-light">--</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-ruler me-2"></i>Distance</span>
+                                    <span id="sensor-distance">-- cm</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-volume-up me-2"></i>Son</span>
+                                    <span id="sensor-sound">--</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Événements récents -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-history me-2"></i>Événements
+                            </h5>
+                            <button id="refresh-events-btn" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush" id="events-list">
+                                <li class="list-group-item text-center text-muted">
+                                    <small>Aucun événement récent</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pied de page -->
+        <footer class="footer mt-4 bg-light py-3">
+            <div class="container text-center">
+                <small class="text-muted">Robot Mignon &copy; 2023 - Système de contrôle à distance</small>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html> 
