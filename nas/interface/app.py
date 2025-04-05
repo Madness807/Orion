@@ -74,6 +74,12 @@ async def index(request: Request):
     """Page d'accueil de l'interface."""
     return templates.TemplateResponse("index.html", {"request": request})
 
+# Route de surveillance
+@app.get("/monitor", response_class=HTMLResponse)
+async def monitor(request: Request):
+    """Page de surveillance du robot."""
+    return templates.TemplateResponse("monitor.html", {"request": request})
+
 # Route d'état du robot
 @app.get("/api/robot/status")
 async def get_robot_status():
@@ -105,6 +111,38 @@ async def get_robot_events(limit: int = 10):
                 return {"success": False, "message": "Erreur lors de la récupération des événements"}
     except Exception as e:
         logger.error(f"Erreur lors de la récupération des événements: {e}")
+        return {"success": False, "message": str(e)}
+
+# Route pour récupérer l'état du système
+@app.get("/api/robot/system_status")
+async def get_system_status():
+    """Récupère l'état du système du robot."""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(f"{MCP_SERVER_URL}/api/system_status/{ROBOT_ID}")
+            if response.status_code == 200:
+                return response.json()
+            else:
+                logger.error(f"Erreur lors de la récupération de l'état du système: {response.status_code}")
+                return {"success": False, "message": "Erreur lors de la récupération de l'état du système"}
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération de l'état du système: {e}")
+        return {"success": False, "message": str(e)}
+
+# Route pour récupérer l'historique des données des capteurs
+@app.get("/api/robot/sensor_history")
+async def get_sensor_history(period: str = "1h"):
+    """Récupère l'historique des données des capteurs."""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(f"{MCP_SERVER_URL}/api/sensor_history/{ROBOT_ID}?period={period}")
+            if response.status_code == 200:
+                return response.json()
+            else:
+                logger.error(f"Erreur lors de la récupération de l'historique des capteurs: {response.status_code}")
+                return {"success": False, "message": "Erreur lors de la récupération de l'historique des capteurs"}
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération de l'historique des capteurs: {e}")
         return {"success": False, "message": str(e)}
 
 # Route pour envoyer une commande au robot

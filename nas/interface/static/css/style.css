@@ -297,4 +297,203 @@ body {
 .dropdown-item {
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
+}
+
+/* Styles spécifiques pour la carte émotionnelle dans monitor.html */
+.emotion-map-container {
+    position: relative;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.current-emotion-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff6b6b;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Styles pour les vignettes d'images */
+.thumbnail-container {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.thumbnail-container:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Styles pour le conteneur de flux vidéo */
+.video-container {
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.detection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+/* Styles pour les indicateurs de connexion */
+.connection-status {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-indicator.connected {
+    background-color: #28a745;
+    box-shadow: 0 0 5px #28a745;
+}
+
+.status-indicator.disconnected {
+    background-color: #dc3545;
+    box-shadow: 0 0 5px #dc3545;
+}
+
+/* Styles pour les boutons d'émotion */
+.emotion-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.btn-emotion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s;
+}
+
+.btn-emotion:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-emotion i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.btn-emotion span {
+    font-size: 0.8rem;
+}
+
+/* Styles pour l'indicateur d'émotion actuelle */
+.emotion-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.emotion-icon i {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+/* Styles pour les contrôles de mouvement */
+.movement-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-movement {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles pour la liste d'événements */
+.event-log-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.event-icon {
+    margin-right: 8px;
+}
+
+/* Media queries pour la réactivité */
+@media (max-width: 768px) {
+    .emotion-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .movement-grid {
+        gap: 5px;
+    }
+    
+    .btn-movement {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .emotion-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .movement-grid {
+        max-width: 240px;
+    }
+    
+    .btn-movement {
+        padding: 10px;
+        font-size: 16px;
+    }
 } 
