@@ -2,7 +2,9 @@
 
 <p align="center">
   <img src="1d9ffdf7-22d8-41dc-9630-14443f3045aa-compressed.jpg" alt="Orion Logo" width="300"/>
+  <img src="A_2D_vector_graphic_logo_design_features_interconn.png" alt="Soulnet Logo" width="300"/>
 </p>
+
 
 
 ## Introduction
