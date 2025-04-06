@@ -1,5 +1,10 @@
 # Projet Orion & Soulnet
 
+<p align="center">
+  <img src="chemin/vers/ton_image.png" alt="Orion Logo" width="300"/>
+</p>
+
+
 ## Introduction
 
 Ce document présente de manière approfondie le projet **Orion**, un robot sensible intégrant un système de traitement centralisé via un NAS, ainsi que le protocole **Soulnet**, spécialement conçu pour des échanges émotionnels et symboliques. Le projet s'inscrit à l'intersection de la robotique, de l’intelligence artificielle, de la psychologie cognitive et de la philosophie, offrant une interaction homme-machine unique, centrée sur l'émotion, la symbolique et l’introspection.
